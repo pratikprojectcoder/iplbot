@@ -1,0 +1,9 @@
+# IPL Bot — FastAPI + ML (production image; Streamlit not required for http://...:8000)
+fastapi==0.136.1
+uvicorn[standard]==0.46.0
+pandas==2.3.3
+numpy==2.4.2
+pydantic==2.12.5
+python-multipart==0.0.28
+scikit-learn==1.8.0
+joblib==1.5.3

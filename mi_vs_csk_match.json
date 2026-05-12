@@ -1,0 +1,54 @@
+{
+  "team_a": "Mumbai Indians",
+  "team_b": "Chennai Super Kings",
+
+  "team_a_overs_data": [
+    {"over": 1, "runs": 9, "wickets": 0},
+    {"over": 2, "runs": 12, "wickets": 0},
+    {"over": 3, "runs": 6, "wickets": 1},
+    {"over": 4, "runs": 15, "wickets": 0},
+    {"over": 5, "runs": 8, "wickets": 0},
+    {"over": 6, "runs": 10, "wickets": 0},
+
+    {"over": 7, "runs": 7, "wickets": 0},
+    {"over": 8, "runs": 5, "wickets": 1},
+    {"over": 9, "runs": 11, "wickets": 0},
+    {"over": 10, "runs": 6, "wickets": 0},
+    {"over": 11, "runs": 8, "wickets": 0},
+    {"over": 12, "runs": 9, "wickets": 0},
+    {"over": 13, "runs": 14, "wickets": 0},
+    {"over": 14, "runs": 5, "wickets": 1},
+    {"over": 15, "runs": 7, "wickets": 0},
+
+    {"over": 16, "runs": 16, "wickets": 0},
+    {"over": 17, "runs": 12, "wickets": 1},
+    {"over": 18, "runs": 18, "wickets": 0},
+    {"over": 19, "runs": 10, "wickets": 0},
+    {"over": 20, "runs": 14, "wickets": 1}
+  ],
+
+  "team_b_overs_data": [
+    {"over": 1, "runs": 8, "wickets": 0},
+    {"over": 2, "runs": 7, "wickets": 0},
+    {"over": 3, "runs": 10, "wickets": 0},
+    {"over": 4, "runs": 5, "wickets": 1},
+    {"over": 5, "runs": 6, "wickets": 0},
+    {"over": 6, "runs": 12, "wickets": 0},
+
+    {"over": 7, "runs": 9, "wickets": 0},
+    {"over": 8, "runs": 11, "wickets": 0},
+    {"over": 9, "runs": 4, "wickets": 2},
+    {"over": 10, "runs": 6, "wickets": 0},
+    {"over": 11, "runs": 7, "wickets": 0},
+    {"over": 12, "runs": 8, "wickets": 0},
+    {"over": 13, "runs": 10, "wickets": 0},
+    {"over": 14, "runs": 5, "wickets": 1},
+    {"over": 15, "runs": 9, "wickets": 0},
+
+    {"over": 16, "runs": 13, "wickets": 0},
+    {"over": 17, "runs": 15, "wickets": 0},
+    {"over": 18, "runs": 8, "wickets": 1},
+    {"over": 19, "runs": 12, "wickets": 0},
+    {"over": 20, "runs": 9, "wickets": 1}
+  ]
+}
