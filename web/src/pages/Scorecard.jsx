@@ -60,6 +60,20 @@ const CTip = ({ active, payload, label }) => {
   )
 }
 
+/** Backend sends margin_type: runs (defended 1st innings) vs wickets (successful chase). */
+function formatAnalysisBanner(a) {
+  if (!a) return ''
+  if (a.winner === 'Tie') return '🏆 Match tied'
+  const m = a.margin
+  const mt = a.margin_type ?? 'runs'
+  if (mt === 'wickets') {
+    const w = m === 1 ? 'wicket' : 'wickets'
+    return `🏆 ${a.winner} won by ${m} ${w}`
+  }
+  const r = m === 1 ? 'run' : 'runs'
+  return `🏆 ${a.winner} won by ${m} ${r}`
+}
+
 export default function Scorecard() {
   const [matches, setMatches] = useState([])
   const [loading, setLoading] = useState(true)
@@ -213,7 +227,7 @@ export default function Scorecard() {
       {analysis && (
         <div className="fade-in">
           <div className="banner" style={{ textAlign: 'center', fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.05rem', marginBottom: '1.5rem' }}>
-            🏆 {analysis.winner} won by {analysis.margin} runs
+            {formatAnalysisBanner(analysis)}
           </div>
 
           <div className="card" style={{ marginBottom: '1.25rem' }}>

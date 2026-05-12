@@ -373,6 +373,7 @@ def analyze_match(match_id: int):
     b_overs = md["team_b_overs_data"]
     a_runs  = sum(o["runs"] for o in a_overs)
     b_runs  = sum(o["runs"] for o in b_overs)
+    b_wkts  = sum(o.get("wickets", 0) for o in b_overs)
     a_rr    = a_runs / len(a_overs) if a_overs else 0
     b_rr    = b_runs / len(b_overs) if b_overs else 0
     rr_diff = a_rr - b_rr
@@ -380,11 +381,26 @@ def analyze_match(match_id: int):
     adj     = rr_diff * 8 + (a_runs - b_runs) * 0.4
     a_prob  = max(0, min(100, base + adj))
 
+    # First innings = team_a; chase in second innings. Defense win → runs margin; chase win → wickets left.
+    if a_runs == b_runs:
+        winner_name = "Tie"
+        margin_val = 0
+        margin_type = "runs"
+    elif a_runs > b_runs:
+        winner_name = md["team_a"]
+        margin_val = a_runs - b_runs
+        margin_type = "runs"
+    else:
+        winner_name = md["team_b"]
+        margin_val = max(0, 10 - b_wkts)
+        margin_type = "wickets"
+
     return {
         "team_a":           md["team_a"],
         "team_b":           md["team_b"],
-        "winner":           md["team_a"] if a_runs > b_runs else md["team_b"],
-        "margin":           abs(a_runs - b_runs),
+        "winner":           winner_name,
+        "margin":           margin_val,
+        "margin_type":      margin_type,
         "team_a_phases":    _phase_seg(a_overs),
         "team_b_phases":    _phase_seg(b_overs),
         "team_a_momentum":  _momentum(a_overs),

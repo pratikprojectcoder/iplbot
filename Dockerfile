@@ -20,6 +20,7 @@ COPY . .
 COPY --from=frontend /frontend/dist ./web/dist
 
 ENV PORT=8000
+ENV FASTAPI_ONLY=1
 EXPOSE 8000
 
-CMD ["sh", "-c", "exec uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-c", "exec uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000}"]
