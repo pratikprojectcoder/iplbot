@@ -100,7 +100,7 @@ def match_selector_ui():
         st.warning("No match index data available.")
         return None
 
-    st.subheader("🏏 Select IPL Match")
+    st.subheader("Select IPL Match")
 
     # ---------------------------------------------
     # Season Selector
@@ -218,8 +218,8 @@ def match_selector_ui():
     # ---------------------------------------------
 
     st.caption(
-        f"📍 Venue: {selected_row.get('venue', 'Unknown')} | "
-        f"📅 Date: {selected_row.get('date', 'Unknown')}"
+        f"Venue: {selected_row.get('venue', 'Unknown')} | "
+        f"Date: {selected_row.get('date', 'Unknown')}"
     )
 
     # ---------------------------------------------
@@ -979,7 +979,7 @@ def squad_strength(df, team):
 # =========================================
 
 st.set_page_config(page_title="T20 Match Intelligence System", layout="wide")
-st.title("🏏 AI Cricket Match Intelligence System")
+st.title("AI Cricket Match Intelligence System")
 
 with st.sidebar:
     with st.expander("React UI & FastAPI (separate from Streamlit)", expanded=False):
@@ -1002,7 +1002,7 @@ frontend or the FastAPI server — those are started with other commands.
 
     app_mode = st.radio(
         "Choose Mode",
-        ["Scorecard Explainer", "Match Outcome Predictor", "Player Intelligence", "🎮 Hand Cricket"],
+        ["Scorecard Explainer", "Match Outcome Predictor", "Player Intelligence", "Hand Cricket"],
     )
 
 # =========================================
@@ -1596,7 +1596,7 @@ elif app_mode == "Match Outcome Predictor":
 
 elif app_mode == "Player Intelligence":
 
-    st.subheader("🏏 Player Intelligence")
+    st.subheader("Player Intelligence")
 
     player_df = load_player_features()
 
@@ -1662,7 +1662,7 @@ elif app_mode == "Player Intelligence":
                 col_bat, col_bowl = st.columns(2)
 
                 with col_bat:
-                    st.markdown(f"**🏏 Top Predicted Batters — {team}**")
+                    st.markdown(f"** Top Predicted Batters — {team}**")
                     bat_df = result["top_batters"].copy()
                     bat_df.index = bat_df.index + 1
                     bat_df.columns = ["Player", "Last 5 Runs Avg", "Last 5 SR", "Predicted Runs"]
@@ -1672,7 +1672,7 @@ elif app_mode == "Player Intelligence":
                     st.dataframe(bat_df, use_container_width=True)
 
                 with col_bowl:
-                    st.markdown(f"**🎳 Top Predicted Bowlers — {team}**")
+                    st.markdown(f"** Top Predicted Bowlers — {team}**")
                     bowl_df = result["top_bowlers"].copy()
                     bowl_df.index = bowl_df.index + 1
                     bowl_df.columns = ["Player", "Last 5 Wickets Avg", "Last 5 Economy", "Predicted Wickets"]
@@ -1709,7 +1709,7 @@ elif app_mode == "Player Intelligence":
                         f"players (< {filter_info.get('required_players', 11)}). Showing best XI from historical pool."
                     )
 
-                st.markdown(f"**🏏 Best XI — {team}**")
+                st.markdown(f"** Best XI — {team}**")
                 xi_df = xi_df.copy()
                 xi_df.columns = ["Player", "Last 5 Runs Avg", "Last 5 Wickets", "Last 5 Economy", "Selection Score"]
                 xi_df["Selection Score"] = xi_df["Selection Score"].round(2)
@@ -1736,7 +1736,7 @@ elif app_mode == "Player Intelligence":
     # ------------------------------------------
     elif player_sub_mode == "Season Leaders (Orange & Purple Cap)":
 
-        st.markdown("#### 🏆 Season Leaders based on Recent Rolling Form")
+        st.markdown("####  Season Leaders based on Recent Rolling Form")
 
         with st.spinner("Computing season leaders..."):
             leaders = season_leaders(player_df)
@@ -1750,7 +1750,7 @@ elif app_mode == "Player Intelligence":
         col_orange, col_purple = st.columns(2)
 
         with col_orange:
-            st.markdown("**🟠 Orange Cap — Top Run Scorers (Last-5 Avg)**")
+            st.markdown("** Orange Cap — Top Run Scorers (Last-5 Avg)**")
             oc = leaders["orange_cap"].copy()
             oc.columns = ["Player", "Team", "Last 5 Runs Avg", "Last 5 SR"]
             oc["Last 5 Runs Avg"] = oc["Last 5 Runs Avg"].round(1)
@@ -1758,7 +1758,7 @@ elif app_mode == "Player Intelligence":
             st.dataframe(oc, use_container_width=True)
 
         with col_purple:
-            st.markdown("**🟣 Purple Cap — Top Wicket Takers (Last-5 Avg)**")
+            st.markdown("** Purple Cap — Top Wicket Takers (Last-5 Avg)**")
             pc = leaders["purple_cap"].copy()
             pc.columns = ["Player", "Team", "Last 5 Wickets", "Last 5 Economy"]
             pc["Last 5 Wickets"] = pc["Last 5 Wickets"].round(2)
@@ -1798,7 +1798,7 @@ elif app_mode == "Player Intelligence":
     # ------------------------------------------
     elif player_sub_mode == "Squad Strength Analysis":
 
-        st.markdown("#### ⚖️ Squad Strength Comparison")
+        st.markdown("####  Squad Strength Comparison")
 
         col1, col2 = st.columns(2)
 
@@ -1876,7 +1876,7 @@ elif app_mode == "Player Intelligence":
 # MODE 4: Hand Cricket Game
 # =========================================
 
-elif app_mode == "🎮 Hand Cricket":
+elif app_mode == "Hand Cricket":
     import random
     import time
     import base64
@@ -1896,16 +1896,16 @@ elif app_mode == "🎮 Hand Cricket":
 
     # ---- IPL Team Config ----
     IPL_TEAMS = {
-        "Chennai Super Kings": {"short": "CSK", "color": "#FFCB05", "emoji": "🦁"},
-        "Mumbai Indians": {"short": "MI", "color": "#004BA0", "emoji": "🔵"},
-        "Royal Challengers Bengaluru": {"short": "RCB", "color": "#D4213D", "emoji": "🔴"},
-        "Kolkata Knight Riders": {"short": "KKR", "color": "#3A225D", "emoji": "💜"},
-        "Delhi Capitals": {"short": "DC", "color": "#004C93", "emoji": "🔷"},
-        "Rajasthan Royals": {"short": "RR", "color": "#EA1A85", "emoji": "👑"},
-        "Punjab Kings": {"short": "PBKS", "color": "#DD1F2D", "emoji": "🦁"},
-        "Sunrisers Hyderabad": {"short": "SRH", "color": "#F26522", "emoji": "🌅"},
-        "Gujarat Titans": {"short": "GT", "color": "#1C1C1C", "emoji": "⚡"},
-        "Lucknow Super Giants": {"short": "LSG", "color": "#A72056", "emoji": "🦸"},
+        "Chennai Super Kings": {"short": "CSK", "color": "#FFCB05"},
+        "Mumbai Indians": {"short": "MI", "color": "#004BA0"},
+        "Royal Challengers Bengaluru": {"short": "RCB", "color": "#D4213D"},
+        "Kolkata Knight Riders": {"short": "KKR", "color": "#3A225D"},
+        "Delhi Capitals": {"short": "DC", "color": "#004C93"},
+        "Rajasthan Royals": {"short": "RR", "color": "#EA1A85"},
+        "Punjab Kings": {"short": "PBKS", "color": "#DD1F2D"},
+        "Sunrisers Hyderabad": {"short": "SRH", "color": "#F26522"},
+        "Gujarat Titans": {"short": "GT", "color": "#1C1C1C"},
+        "Lucknow Super Giants": {"short": "LSG", "color": "#A72056"},
     }
 
     # ---- Custom CSS for game styling ----
@@ -2001,7 +2001,7 @@ elif app_mode == "🎮 Hand Cricket":
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="cricket-title">🏏 IPL Hand Cricket</div>', unsafe_allow_html=True)
+    st.markdown('<div class="cricket-title">IPL Hand Cricket</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="cricket-subtitle">Pick a number 1–6 • If it matches the opponent’s pick, that\'s a wicket!</div>',
         unsafe_allow_html=True
@@ -2048,32 +2048,32 @@ elif app_mode == "🎮 Hand Cricket":
     def get_commentary(user_num, cpu_num, runs, is_out, batting_team_short):
         if is_out:
             return random.choice([
-                f"🔴 WICKET! Both picked {user_num}! The batter has to walk back!",
-                f"💥 OUT! Same number {user_num}! What a moment in this match!",
-                f"☝️ GONE! Matched at {user_num}! The fielding side celebrates!",
-                f"🎯 BOWLED! Both chose {user_num}! Huge wicket for the bowling side!",
+                f"WICKET! Both picked {user_num}! The batter has to walk back!",
+                f"OUT! Same number {user_num}! What a moment in this match!",
+                f"GONE! Matched at {user_num}! The fielding side celebrates!",
+                f"BOWLED! Both chose {user_num}! Huge wicket for the bowling side!",
             ])
         if runs == 6:
             return random.choice([
-                f"🚀 SIX! {batting_team_short} smashes it out of the park! Massive hit!",
-                f"💥 MAXIMUM! That's gone into the stands! 6 runs!",
-                f"🏟️ What a shot! That's sailed over the boundary for SIX!",
+                f"SIX! {batting_team_short} smashes it out of the park! Massive hit!",
+                f"MAXIMUM! That's gone into the stands! 6 runs!",
+                f"What a shot! That's sailed over the boundary for SIX!",
             ])
         if runs == 4:
             return random.choice([
-                f"🏏 FOUR! Beautifully timed through the gap! {batting_team_short} scoring freely!",
-                f"💫 Boundary! Pierces the field and races to the rope! 4 runs!",
-                f"🔥 FOUR! Cracking shot! That's pure class!",
+                f"FOUR! Beautifully timed through the gap! {batting_team_short} scoring freely!",
+                f"Boundary! Pierces the field and races to the rope! 4 runs!",
+                f"FOUR! Cracking shot! That's pure class!",
             ])
         if runs == 0:
             return random.choice([
-                "⚫ Dot ball! Tight bowling, no run scored.",
-                "🎯 Good delivery! The batter couldn't get it away.",
+                "Dot ball! Tight bowling, no run scored.",
+                "Good delivery! The batter couldn't get it away.",
             ])
         return random.choice([
-            f"✅ {runs} run{'s' if runs > 1 else ''}! Good cricket from {batting_team_short}.",
-            f"🏃 {runs} added to the total. Smart batting!",
-            f"👏 {runs} run{'s' if runs > 1 else ''} off that delivery.",
+            f" {runs} run{'s' if runs > 1 else ''}! Good cricket from {batting_team_short}.",
+            f" {runs} added to the total. Smart batting!",
+            f" {runs} run{'s' if runs > 1 else ''} off that delivery.",
         ])
 
     # ---- Helper: overs display  ----
@@ -2083,27 +2083,27 @@ elif app_mode == "🎮 Hand Cricket":
     # ========= PHASE: SETUP =========
     if hc["phase"] == "setup":
         st.markdown("---")
-        st.markdown("### 🏟️ Match Setup")
+        st.markdown("###  Match Setup")
 
         team_names = list(IPL_TEAMS.keys())
         col_setup1, col_setup2, col_setup3 = st.columns(3)
 
         with col_setup1:
-            user_team = st.selectbox("🏏 Your Team", team_names, key="hc_user_team")
+            user_team = st.selectbox("Your Team", team_names, key="hc_user_team")
 
         opp_options = [t for t in team_names if t != user_team]
         if "hc_opp_team" in st.session_state and st.session_state.hc_opp_team not in opp_options:
             st.session_state.hc_opp_team = opp_options[0]
 
         with col_setup2:
-            opp_team = st.selectbox("⚔️ Opponent Team", opp_options, key="hc_opp_team")
+            opp_team = st.selectbox("Opponent Team", opp_options, key="hc_opp_team")
 
         with col_setup3:
-            overs = st.selectbox("📊 Overs Per Innings", [2, 3, 5, 10], index=2, key="hc_overs")
+            overs = st.selectbox("Overs Per Innings", [2, 3, 5, 10], index=2, key="hc_overs")
 
-        wickets = st.selectbox("💀 Wickets Per Innings", [1, 2, 3, 5, 10], index=2, key="hc_wickets")
+        wickets = st.selectbox("Wickets Per Innings", [1, 2, 3, 5, 10], index=2, key="hc_wickets")
 
-        if st.button("⚡ Start Match", use_container_width=True):
+        if st.button("Start Match", use_container_width=True):
             hc.update(init_game_state())
             hc["user_team"] = user_team
             hc["cpu_team"] = opp_team
@@ -2122,13 +2122,13 @@ elif app_mode == "🎮 Hand Cricket":
         <div class="scoreboard">
             <div style="display:flex;justify-content:center;align-items:center;gap:2rem;">
                 <div style="text-align:center;">
-                    <div style="font-size:2.5rem;">{user_info['emoji']}</div>
+                    <div style="font-size:2.5rem;">{user_info['short']}</div>
                     <div style="color:#FFD700;font-weight:700;font-size:1.2rem;">{user_info['short']}</div>
                     <div style="color:#9CA3AF;font-size:0.8rem;">You</div>
                 </div>
                 <div class="vs-badge">VS</div>
                 <div style="text-align:center;">
-                    <div style="font-size:2.5rem;">{cpu_info['emoji']}</div>
+                    <div style="font-size:2.5rem;">{cpu_info['short']}</div>
                     <div style="color:#FFD700;font-weight:700;font-size:1.2rem;">{cpu_info['short']}</div>
                     <div style="color:#9CA3AF;font-size:0.8rem;">Opponent</div>
                 </div>
@@ -2136,36 +2136,36 @@ elif app_mode == "🎮 Hand Cricket":
         </div>
         """, unsafe_allow_html=True)
 
-        st.markdown("### 🪙 Toss Time!")
+        st.markdown("###  Toss Time!")
         toss_call = st.radio("Call the toss:", ["Heads", "Tails"], horizontal=True, key="hc_toss_call")
 
-        if st.button("🪙 Flip the Coin!", use_container_width=True):
+        if st.button("Flip the Coin!", use_container_width=True):
             result = random.choice(["Heads", "Tails"])
             user_won_toss = (toss_call == result)
             hc["toss_winner"] = "user" if user_won_toss else "cpu"
 
             if user_won_toss:
-                st.success(f"🎉 It's **{result}**! You won the toss!")
+                st.success(f"It's **{result}**! You won the toss!")
             else:
                 st.error(f"It's **{result}**! {IPL_TEAMS[hc['cpu_team']]['short']} won the toss!")
                 cpu_choice = random.choice(["bat", "bowl"])
                 hc["user_batting"] = (cpu_choice == "bowl")
                 hc["current_batting"] = "user" if hc["user_batting"] else "cpu"
                 hc["phase"] = "playing"
-                st.info(f"⚔️ {IPL_TEAMS[hc['cpu_team']]['short']} chose to **{cpu_choice}** first!")
+                st.info(f" {IPL_TEAMS[hc['cpu_team']]['short']} chose to **{cpu_choice}** first!")
                 st.rerun()
 
         if hc["toss_winner"] == "user" and hc["user_batting"] is None:
             st.markdown("#### What do you choose?")
             c1, c2 = st.columns(2)
             with c1:
-                if st.button("🏏 Bat First", use_container_width=True):
+                if st.button("Bat First", use_container_width=True):
                     hc["user_batting"] = True
                     hc["current_batting"] = "user"
                     hc["phase"] = "playing"
                     st.rerun()
             with c2:
-                if st.button("🎯 Bowl First", use_container_width=True):
+                if st.button("Bowl First", use_container_width=True):
                     hc["user_batting"] = False
                     hc["current_batting"] = "cpu"
                     hc["phase"] = "playing"
@@ -2185,8 +2185,8 @@ elif app_mode == "🎮 Hand Cricket":
         <div class="scoreboard">
             <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div style="text-align:center;flex:1;">
-                    <div style="color:#9CA3AF;font-size:0.8rem;">{'🏏 BATTING' if is_user_batting else '🎯 BOWLING'}</div>
-                    <div style="font-size:1.5rem;">{user_info['emoji']} {user_info['short']}</div>
+                    <div style="color:#9CA3AF;font-size:0.8rem;">{'BATTING' if is_user_batting else 'BOWLING'}</div>
+                    <div style="font-size:1.5rem;">{user_info['short']}</div>
                 </div>
                 <div style="text-align:center;flex:2;">
                     <div class="score-label">INNINGS {hc['innings']} • {bat_info['short']} Batting</div>
@@ -2194,8 +2194,8 @@ elif app_mode == "🎮 Hand Cricket":
                     <div class="score-label">Overs: {overs_display(hc['balls'])} / {hc['max_overs']}.0</div>
                 </div>
                 <div style="text-align:center;flex:1;">
-                    <div style="color:#9CA3AF;font-size:0.8rem;">{'🎯 BOWLING' if is_user_batting else '🏏 BATTING'}</div>
-                    <div style="font-size:1.5rem;">{cpu_info['emoji']} {cpu_info['short']}</div>
+                    <div style="color:#9CA3AF;font-size:0.8rem;">{'BOWLING' if is_user_batting else 'BATTING'}</div>
+                    <div style="font-size:1.5rem;">{cpu_info['short']}</div>
                 </div>
             </div>
         </div>
@@ -2207,7 +2207,7 @@ elif app_mode == "🎮 Hand Cricket":
             balls_left = (hc["max_overs"] * 6) - hc["balls"]
             if need > 0:
                 rrr = round((need / balls_left) * 6, 2) if balls_left > 0 else 999
-                st.markdown(f'<div class="target-banner">🎯 Target: {hc["target"]} | Need {need} from {balls_left} balls | RRR: {rrr}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="target-banner"> Target: {hc["target"]} | Need {need} from {balls_left} balls | RRR: {rrr}</div>', unsafe_allow_html=True)
 
         # Ball log display
         if hc["ball_log"]:
@@ -2282,7 +2282,7 @@ elif app_mode == "🎮 Hand Cricket":
         # ---- Play input ----
         if not innings_over:
             if is_user_batting:
-                st.markdown("### 🏏 You're Batting — Pick your shot!")
+                st.markdown("###  You're Batting — Pick your shot!")
                 cols = st.columns(6)
                 for i, col in enumerate(cols):
                     with col:
@@ -2301,7 +2301,7 @@ elif app_mode == "🎮 Hand Cricket":
                             hc["last_commentary"] = get_commentary(user_num, cpu_num, user_num, is_out, bat_info["short"])
                             st.rerun()
             else:
-                st.markdown("### 🎯 You're Bowling — Pick your delivery!")
+                st.markdown("###  You're Bowling — Pick your delivery!")
                 cols = st.columns(6)
                 for i, col in enumerate(cols):
                     with col:
@@ -2330,9 +2330,9 @@ elif app_mode == "🎮 Hand Cricket":
         st.markdown(f"""
         <div class="scoreboard">
             <div style="text-align:center;">
-                <div style="color:#FFD700;font-size:1rem;font-weight:600;">☕ INNINGS BREAK</div>
+                <div style="color:#FFD700;font-size:1rem;font-weight:600;"> INNINGS BREAK</div>
                 <div style="color:#E5E7EB;font-size:1.2rem;margin:0.5rem 0;">
-                    {first_bat_info['emoji']} {first_bat_info['short']} scored
+                    {first_bat_info['short']} scored
                 </div>
                 <div class="score-big">{hc['innings1_runs']}/{hc['innings1_wickets']}</div>
                 <div class="score-label">in {overs_display(hc['innings1_balls'])} overs</div>
@@ -2342,9 +2342,9 @@ elif app_mode == "🎮 Hand Cricket":
 
         second_bat = hc["cpu_team"] if hc["user_batting"] else hc["user_team"]
         second_info = IPL_TEAMS[second_bat]
-        st.markdown(f'<div class="target-banner">🎯 {second_info["short"]} need {hc["target"]} runs to win in {hc["max_overs"]} overs</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="target-banner"> {second_info["short"]} need {hc["target"]} runs to win in {hc["max_overs"]} overs</div>', unsafe_allow_html=True)
 
-        if st.button("▶️ Start 2nd Innings", use_container_width=True):
+        if st.button("Start 2nd Innings", use_container_width=True):
             hc["phase"] = "playing"
             st.rerun()
 
@@ -2359,7 +2359,7 @@ elif app_mode == "🎮 Hand Cricket":
 
         # Winner banner
         if hc["winner"] == "Tie":
-            st.markdown('<div class="winner-banner">🤝 It\'s a TIE! What a match!</div>', unsafe_allow_html=True)
+            st.markdown('<div class="winner-banner"> It\'s a TIE! What a match!</div>', unsafe_allow_html=True)
         else:
             winner_info = IPL_TEAMS[hc["winner"]]
             is_user_winner = (hc["winner"] == hc["user_team"])
@@ -2370,14 +2370,14 @@ elif app_mode == "🎮 Hand Cricket":
             else:
                 margin = f"by {hc['innings1_runs'] - hc['innings2_runs']} runs"
 
-            banner_text = f"{'🎉🏆' if is_user_winner else '😞'} {winner_info['emoji']} {hc['winner']} wins {margin}!"
+            banner_text = f"{hc['winner']} wins {margin}!"
             st.markdown(f'<div class="winner-banner">{banner_text}</div>', unsafe_allow_html=True)
 
             if is_user_winner:
                 st.balloons()
 
         # Scorecard
-        st.markdown("### 📊 Match Scorecard")
+        st.markdown("###  Match Scorecard")
 
         col_sc1, col_sc2 = st.columns(2)
 
@@ -2386,7 +2386,7 @@ elif app_mode == "🎮 Hand Cricket":
             <div class="scoreboard">
                 <div style="text-align:center;">
                     <div style="color:#9CA3AF;font-size:0.8rem;">1st INNINGS</div>
-                    <div style="font-size:1.3rem;">{first_info['emoji']} {first_info['short']}</div>
+                    <div style="font-size:1.3rem;">{first_info['short']}</div>
                     <div class="score-big">{hc['innings1_runs']}/{hc['innings1_wickets']}</div>
                     <div class="score-label">({overs_display(hc['innings1_balls'])} overs)</div>
                 </div>
@@ -2398,7 +2398,7 @@ elif app_mode == "🎮 Hand Cricket":
             <div class="scoreboard">
                 <div style="text-align:center;">
                     <div style="color:#9CA3AF;font-size:0.8rem;">2nd INNINGS</div>
-                    <div style="font-size:1.3rem;">{second_info['emoji']} {second_info['short']}</div>
+                    <div style="font-size:1.3rem;">{second_info['short']}</div>
                     <div class="score-big">{hc['innings2_runs']}/{hc['innings2_wickets']}</div>
                     <div class="score-label">({overs_display(hc['innings2_balls'])} overs)</div>
                 </div>
@@ -2406,7 +2406,7 @@ elif app_mode == "🎮 Hand Cricket":
             """, unsafe_allow_html=True)
 
         # Ball-by-ball logs
-        with st.expander("📋 1st Innings Ball Log"):
+        with st.expander("1st Innings Ball Log"):
             if hc["innings1_log"]:
                 ball_html = ""
                 for b in hc["innings1_log"]:
@@ -2422,7 +2422,7 @@ elif app_mode == "🎮 Hand Cricket":
                         ball_html += f'<span class="ball-result ball-run">{b}</span>'
                 st.markdown(ball_html, unsafe_allow_html=True)
 
-        with st.expander("📋 2nd Innings Ball Log"):
+        with st.expander("2nd Innings Ball Log"):
             if hc["innings2_log"]:
                 ball_html = ""
                 for b in hc["innings2_log"]:
@@ -2440,6 +2440,6 @@ elif app_mode == "🎮 Hand Cricket":
 
         # Play again
         st.markdown("---")
-        if st.button("🔄 Play Again", use_container_width=True):
+        if st.button("Play Again", use_container_width=True):
             st.session_state.hc = init_game_state()
             st.rerun()

@@ -6,28 +6,28 @@ import StatCard from '../components/StatCard'
 const features = [
   {
     to: '/scorecard',
-    icon: '📋',
+    icon: '',
     title: 'Scorecard Explainer',
     desc: 'Deep-dive into any IPL match. View batting & bowling scorecards, phase analysis, momentum charts and AI-generated commentary.',
     color: '#7c3aed',
   },
   {
     to: '/predict',
-    icon: '🔮',
+    icon: '',
     title: 'Match Outcome Predictor',
     desc: 'Our ML model predicts win probabilities based on head-to-head records, venue stats, recent form and toss impact.',
     color: '#f4d03f',
   },
   {
     to: '/players',
-    icon: '🏏',
+    icon: '',
     title: 'Player Intelligence',
     desc: 'Explore top batters & bowlers, build the Best XI, view Orange & Purple Cap leaderboards and compare squad strengths.',
     color: '#ff6b35',
   },
   {
     to: '/hand-cricket',
-    icon: '🎮',
+    icon: '',
     title: 'Hand Cricket',
     desc: 'Play the classic hand-cricket game against the computer as your favourite IPL team. Includes toss, innings break & full scorecard.',
     color: '#10b981',
@@ -45,7 +45,7 @@ export default function Home() {
     <div className="fade-in">
       {/* Hero */}
       <section className="hero">
-        <div className="hero-badge">🏆 IPL 2026 · Powered by AI</div>
+        <div className="hero-badge">IPL 2026 · Powered by AI</div>
         <h1 className="hero-title">
           Your Ultimate<br />
           <span className="gold">IPL Intelligence</span><br />
@@ -84,7 +84,7 @@ export default function Home() {
 
       {/* Footer note */}
       <div style={{ marginTop: '3rem', padding: '1.25rem', background: 'var(--bg-panel)', borderRadius: 'var(--radius)', border: '1px solid var(--border)', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
-        💡 <strong style={{ color: 'var(--text)' }}>How it works:</strong> The FastAPI backend exposes ML models trained on historical IPL data.
+         <strong style={{ color: 'var(--text)' }}>How it works:</strong> The FastAPI backend exposes ML models trained on historical IPL data.
         The React frontend calls these endpoints to display predictions, scorecards and player analytics in real time.
         The Streamlit app (<code>app.py</code>) continues to work independently.
       </div>

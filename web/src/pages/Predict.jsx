@@ -54,7 +54,7 @@ export default function Predict() {
 
   return (
     <div className="fade-in">
-      <h1 className="page-title">🔮 Match <span>Predictor</span></h1>
+      <h1 className="page-title"> Match <span>Predictor</span></h1>
       <p className="page-lead">Our ML model predicts win probabilities using head-to-head records, venue stats and recent form.</p>
 
       {/* Accuracy strip */}
@@ -69,7 +69,7 @@ export default function Predict() {
 
       {/* Predictor form */}
       <div className="card" style={{ marginBottom: '1.5rem' }}>
-        <div className="section-title" style={{ marginBottom: '1rem' }}>🏟️ Configure Match</div>
+        <div className="section-title" style={{ marginBottom: '1rem' }}> Configure Match</div>
         <div className="form-row">
           <div className="form-group">
             <label>Your Team</label>
@@ -91,7 +91,7 @@ export default function Predict() {
           </div>
         </div>
         <button className="btn-primary" onClick={predict} disabled={loading || !team || !opponent || !venue}>
-          {loading ? '🔮 Predicting…' : '🔮 Generate Prediction'}
+          {loading ? 'Predicting…' : 'Generate Prediction'}
         </button>
       </div>
 
@@ -102,7 +102,7 @@ export default function Predict() {
         <div className="fade-in">
           {/* Win probability */}
           <div className="card" style={{ marginBottom: '1.25rem' }}>
-            <div className="section-title">🎯 Win Probability</div>
+            <div className="section-title"> Win Probability</div>
             <ProbBar
               teamA={pred.team} teamB={pred.opponent}
               probA={(pred.team_win_probability * 100).toFixed(1)}
@@ -110,7 +110,7 @@ export default function Predict() {
             />
             <div style={{ textAlign: 'center', marginTop: '1rem' }}>
               <span className="pill pill-gold" style={{ fontSize: '0.88rem' }}>
-                🏆 Predicted winner: {pred.team_win_probability > pred.opponent_win_probability ? pred.team : pred.opponent}
+                 Predicted winner: {pred.team_win_probability > pred.opponent_win_probability ? pred.team : pred.opponent}
               </span>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function Predict() {
           {/* Key stats grid */}
           {extras && (
             <div className="card" style={{ marginBottom: '1.25rem' }}>
-              <div className="section-title">📊 Key Match Features</div>
+              <div className="section-title"> Key Match Features</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: '0.75rem', marginTop: '0.5rem' }}>
                 {[
                   { label: 'Batting First Win %', a: extras.team_batting_first_win_pct, b: extras.opp_batting_first_win_pct },
@@ -148,7 +148,7 @@ export default function Predict() {
           {/* Feature drivers */}
           {pred.top_features?.length > 0 && (
             <div className="card" style={{ marginBottom: '1.25rem' }}>
-              <div className="section-title">🔑 Top Feature Drivers</div>
+              <div className="section-title"> Top Feature Drivers</div>
               <div className="table-wrap">
                 <table>
                   <thead>
@@ -179,7 +179,7 @@ export default function Predict() {
           {/* AI explanation */}
           {expl && (
             <div className="card">
-              <div className="section-title">🤖 AI Match Summary</div>
+              <div className="section-title"> AI Match Summary</div>
               {[
                 { label: 'Match Summary', text: expl.match_summary },
                 { label: 'Key Feature Drivers', text: expl.feature_drivers },

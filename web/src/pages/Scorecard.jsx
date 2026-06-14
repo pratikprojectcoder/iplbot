@@ -63,15 +63,15 @@ const CTip = ({ active, payload, label }) => {
 /** Backend sends margin_type: runs (defended 1st innings) vs wickets (successful chase). */
 function formatAnalysisBanner(a) {
   if (!a) return ''
-  if (a.winner === 'Tie') return '🏆 Match tied'
+  if (a.winner === 'Tie') return 'Match tied'
   const m = a.margin
   const mt = a.margin_type ?? 'runs'
   if (mt === 'wickets') {
     const w = m === 1 ? 'wicket' : 'wickets'
-    return `🏆 ${a.winner} won by ${m} ${w}`
+    return ` ${a.winner} won by ${m} ${w}`
   }
   const r = m === 1 ? 'run' : 'runs'
-  return `🏆 ${a.winner} won by ${m} ${r}`
+  return ` ${a.winner} won by ${m} ${r}`
 }
 
 export default function Scorecard() {
@@ -126,7 +126,7 @@ export default function Scorecard() {
 
   return (
     <div className="fade-in">
-      <h1 className="page-title">📋 Scorecard <span>Explainer</span></h1>
+      <h1 className="page-title"> Scorecard <span>Explainer</span></h1>
       <p className="page-lead">Select a match to view the full scorecard, phase analysis and momentum tracker.</p>
 
       <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -173,7 +173,7 @@ export default function Scorecard() {
               </select>
             </div>
             <button className="btn-primary" onClick={loadScorecard} disabled={scLoading || !matchId}>
-              {scLoading ? 'Loading…' : '📋 Load Scorecard'}
+              {scLoading ? 'Loading…' : 'Load Scorecard'}
             </button>
           </div>
         )}
@@ -187,7 +187,7 @@ export default function Scorecard() {
         <div className="fade-in">
           {scorecard.outcome?.winner && (
             <div className="banner" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span style={{ fontSize: '1.5rem' }}>🏆</span>
+              <span style={{ fontSize: '1.5rem' }}></span>
               <div>
                 <div style={{ fontWeight: 700, color: 'var(--gold)', fontFamily: 'Outfit', fontSize: '1.05rem' }}>
                   {scorecard.outcome.winner} won{Object.entries(scorecard.outcome.by || {}).map(([k, v]) => ` by ${v} ${k}`)}
@@ -210,14 +210,14 @@ export default function Scorecard() {
                 </div>
                 <div style={{ fontFamily: 'Outfit', fontSize: '2.2rem', fontWeight: 900, color: 'var(--gold)' }}>{inn.total_runs}/{inn.total_wickets}</div>
               </div>
-              <ScorecardTable title="🏏 Batting" rows={inn.batting} cols={batCols} />
-              <ScorecardTable title="🎳 Bowling" rows={inn.bowling} cols={bowlCols} />
+              <ScorecardTable title="Batting" rows={inn.batting} cols={batCols} />
+              <ScorecardTable title="Bowling" rows={inn.bowling} cols={bowlCols} />
             </div>
           ))}
 
           <div style={{ display: 'flex', justifyContent: 'center', margin: '1.5rem 0' }}>
             <button className="btn-primary" onClick={loadAnalysis} disabled={anLoading}>
-              {anLoading ? '⚡ Analysing…' : '⚡ Generate Match Analysis'}
+              {anLoading ? 'Analysing…' : 'Generate Match Analysis'}
             </button>
           </div>
           {anLoading && <Spinner text="Computing analysis…" />}
@@ -231,7 +231,7 @@ export default function Scorecard() {
           </div>
 
           <div className="card" style={{ marginBottom: '1.25rem' }}>
-            <div className="section-title">📊 Phase Comparison — Runs</div>
+            <div className="section-title"> Phase Comparison — Runs</div>
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={['powerplay', 'middle', 'death'].map(ph => ({
                 phase: ph.charAt(0).toUpperCase() + ph.slice(1),
@@ -249,7 +249,7 @@ export default function Scorecard() {
           </div>
 
           <div className="card" style={{ marginBottom: '1.25rem' }}>
-            <div className="section-title">📈 Momentum Tracker</div>
+            <div className="section-title"> Momentum Tracker</div>
             <ResponsiveContainer width="100%" height={220}>
               <LineChart>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
@@ -264,7 +264,7 @@ export default function Scorecard() {
           </div>
 
           <div className="card">
-            <div className="section-title">🎯 Win Probability</div>
+            <div className="section-title"> Win Probability</div>
             <div style={{ maxWidth: 520, margin: '0 auto' }}>
               {[['team_a', '#7c3aed'], ['team_b', '#ff6b35']].map(([key, color]) => (
                 <div key={key} className="prob-container">

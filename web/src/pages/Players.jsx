@@ -146,7 +146,7 @@ export default function Players() {
 
   return (
     <div className="fade-in">
-      <h1 className="page-title">🏏 Player <span>Intelligence</span></h1>
+      <h1 className="page-title"> Player <span>Intelligence</span></h1>
       <p className="page-lead">Predict top performers, build the Best XI, track leaderboards and compare squad strengths.</p>
 
       <div className="tabs">
@@ -157,7 +157,7 @@ export default function Players() {
 
       {error && <div className="banner banner-error" style={{ marginBottom: '1rem' }}>{error}</div>}
 
-      {/* ── Tab 0: Performance Predictions ── */}
+      {/*  Tab 0: Performance Predictions  */}
       {tab === 0 && (
         <div className="fade-in">
           <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -184,18 +184,18 @@ export default function Players() {
               </div>
             </div>
             <button className="btn-primary" onClick={fetchPerformance} disabled={ppLoading}>
-              {ppLoading ? 'Predicting…' : '🎯 Predict Player Performance'}
+              {ppLoading ? 'Predicting…' : 'Predict Player Performance'}
             </button>
           </div>
           {ppLoading && <Spinner text="Analysing player data…" />}
           {ppResult && (
             <div className="fade-in" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <div className="card">
-                <div className="section-title">🏏 Top Predicted Batters — {ppResult.team}</div>
+                <div className="section-title"> Top Predicted Batters — {ppResult.team}</div>
                 <DataTable rows={ppResult.batters} cols={batCols} />
               </div>
               <div className="card">
-                <div className="section-title">🎳 Top Predicted Bowlers — {ppResult.team}</div>
+                <div className="section-title"> Top Predicted Bowlers — {ppResult.team}</div>
                 <DataTable rows={ppResult.bowlers} cols={bowlCols} />
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function Players() {
         </div>
       )}
 
-      {/* ── Tab 1: Best XI ── */}
+      {/*  Tab 1: Best XI  */}
       {tab === 1 && (
         <div className="fade-in">
           <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -216,7 +216,7 @@ export default function Players() {
                 </select>
               </div>
               <button className="btn-primary" onClick={fetchBestXI} disabled={xiLoading}>
-                {xiLoading ? 'Building…' : '🏆 Build Best XI'}
+                {xiLoading ? 'Building…' : 'Build Best XI'}
               </button>
             </div>
           </div>
@@ -224,14 +224,14 @@ export default function Players() {
           {xiResult && (
             <div className="fade-in">
               <div className="card" style={{ marginBottom: '1.25rem' }}>
-                <div className="section-title">🏆 Best XI — {xiResult.team}</div>
+                <div className="section-title"> Best XI — {xiResult.team}</div>
                 <DataTable rows={xiResult.xi} cols={xiCols} />
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.75rem' }}>
                   Score = 0.5 × Runs Avg + 0.3 × Wickets − 0.2 × Economy. Top 11 selected.
                 </div>
               </div>
               <div className="card">
-                <div className="section-title">📊 Selection Scores</div>
+                <div className="section-title"> Selection Scores</div>
                 <ResponsiveContainer width="100%" height={280}>
                   <BarChart data={[...xiResult.xi].reverse().map(p => ({ name: p.player.split(' ').pop(), score: Number(p.score?.toFixed(2)) }))} layout="vertical">
                     <XAxis type="number" stroke="#8b9bb4" />
@@ -246,7 +246,7 @@ export default function Players() {
         </div>
       )}
 
-      {/* ── Tab 2: Leaders ── */}
+      {/*  Tab 2: Leaders  */}
       {tab === 2 && (
         <div className="fade-in">
           {ldLoading && <Spinner text="Computing season leaders…" />}
@@ -254,11 +254,11 @@ export default function Players() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
               <div>
                 <div className="card" style={{ marginBottom: '1.25rem' }}>
-                  <div className="section-title">🟠 Orange Cap — Top Run Scorers</div>
+                  <div className="section-title"> Orange Cap — Top Run Scorers</div>
                   <DataTable rows={leaders.orange_cap} cols={ocCols} />
                 </div>
                 <div className="card">
-                  <div className="section-title">📊 Orange Cap Chart</div>
+                  <div className="section-title"> Orange Cap Chart</div>
                   <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={[...leaders.orange_cap].reverse().map(p => ({ name: p.player.split(' ').pop(), runs: Number(p.player_last5_runs_avg?.toFixed(1)) }))} layout="vertical">
                       <XAxis type="number" stroke="#8b9bb4" />
@@ -271,11 +271,11 @@ export default function Players() {
               </div>
               <div>
                 <div className="card" style={{ marginBottom: '1.25rem' }}>
-                  <div className="section-title">🟣 Purple Cap — Top Wicket Takers</div>
+                  <div className="section-title"> Purple Cap — Top Wicket Takers</div>
                   <DataTable rows={leaders.purple_cap} cols={pcCols} />
                 </div>
                 <div className="card">
-                  <div className="section-title">📊 Purple Cap Chart</div>
+                  <div className="section-title"> Purple Cap Chart</div>
                   <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={[...leaders.purple_cap].reverse().map(p => ({ name: p.player.split(' ').pop(), wickets: Number(p.player_last5_wickets?.toFixed(2)) }))} layout="vertical">
                       <XAxis type="number" stroke="#8b9bb4" />
@@ -291,7 +291,7 @@ export default function Players() {
         </div>
       )}
 
-      {/* ── Tab 3: Squad Strength ── */}
+      {/*  Tab 3: Squad Strength  */}
       {tab === 3 && (
         <div className="fade-in">
           <div className="card" style={{ marginBottom: '1.5rem' }}>
@@ -310,7 +310,7 @@ export default function Players() {
                 </select>
               </div>
               <button className="btn-primary" onClick={fetchSquad} disabled={sqLoading}>
-                {sqLoading ? 'Comparing…' : '⚖️ Compare Squads'}
+                {sqLoading ? 'Comparing…' : 'Compare Squads'}
               </button>
             </div>
           </div>
@@ -341,7 +341,7 @@ export default function Players() {
                   ))}
                 </div>
                 <div className="card">
-                  <div className="section-title">📊 Squad Comparison Chart</div>
+                  <div className="section-title"> Squad Comparison Chart</div>
                   <ResponsiveContainer width="100%" height={260}>
                     <BarChart data={metrics.map((m, i) => ({ metric: labels[i], [sqResult.team_a]: dA[m], [sqResult.team_b]: dB[m] }))} barCategoryGap="30%">
                       <XAxis dataKey="metric" stroke="#8b9bb4" tick={{ fontSize: 11 }} />
